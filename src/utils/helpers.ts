@@ -1,11 +1,11 @@
 /**
- * Formats URL for Confluence page
- * @param baseUrl - Base Confluence URL
- * @param spaceKey - Space key
- * @param pageId - Page ID
+ * Formats URL for Confluence page - makes it pretty!
+ * @param baseUrl - Base URL of Confluence
+ * @param spaceKey - Space key (ya know, that weird abbrev)
+ * @param pageId - ID of the page
  * @param pageTitle - Page title
  * @param headerId - Header ID (optional)
- * @returns Formatted URL
+ * @returns Nicely formatted URL
  */
 export const formatPageUrl = (
     baseUrl: string,
@@ -14,21 +14,21 @@ export const formatPageUrl = (
     pageTitle: string,
     headerId?: string
 ): string => {
-    // Format page title (remove special chars, replace spaces with plus signs)
+    // Format the page title (remove weird chars, replace spaces w/ plus signs)
     const formattedTitle = pageTitle
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '+');
 
     const url = `${baseUrl}/spaces/${spaceKey}/pages/${pageId}/${formattedTitle}`;
 
-    // Add header ID if it exists
+    // Add header ID if we got one
     return headerId ? `${url}#${headerId}` : url;
 };
 
 /**
- * Extracts page ID from Confluence URL
+ * Grabs page ID from a Confluence URL - handy util!
  * @param url - Confluence page URL
- * @returns Page ID or null if not found
+ * @returns Page ID or null if couldn't find it :/
  */
 export const extractPageIdFromUrl = (url: string): string | null => {
     // Example URL: https://your_name.atlassian.net/wiki/spaces/~123/pages/456/Title
@@ -39,19 +39,19 @@ export const extractPageIdFromUrl = (url: string): string | null => {
 };
 
 /**
- * Checks if given URL is a valid Confluence URL
+ * Checks if URL is legit Confluence URL or some garbage
  * @param url - URL to check
- * @returns true if URL is valid
+ * @returns true if it looks like confluence, false if not
  */
 export const isValidConfluenceUrl = (url: string): boolean => {
     return url.includes('atlassian.net/wiki/spaces/') && url.includes('/pages/');
 };
 
 /**
- * Trims text to specified length with ellipsis
- * @param text - Text to trim
- * @param maxLength - Max length (defaults to 100)
- * @returns Trimmed text
+ * Cuts text down 2 size w/ ellipsis
+ * @param text - Text to chop
+ * @param maxLength - Max len (100 by default)
+ * @returns Trimmed txt
  */
 export const truncateText = (text: string, maxLength: number = 100): string => {
     if (text.length <= maxLength) {
@@ -62,9 +62,9 @@ export const truncateText = (text: string, maxLength: number = 100): string => {
 };
 
 /**
- * Delays function execution (useful for debounce)
- * @param ms - Delay time in milliseconds
- * @returns Promise that resolves after given time
+ * Waits a bit - useful 4 debounce stuff
+ * @param ms - Time in ms to wait
+ * @returns Promise that resolves after waitin
  */
 export const delay = (ms: number): Promise<void> => {
     return new Promise(resolve => setTimeout(resolve, ms));
