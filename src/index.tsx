@@ -1,19 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './components/App';
-import reportWebVitals from './reportWebVitals';
+import './App.css';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Set up fast rendering to make the popup responsive
+document.addEventListener('DOMContentLoaded', () => {
+  const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
+  );
 
-// Wanna measure perf? Pass a func to log results (like: reportWebVitals(console.log))
-// or send to ur analytics thing. Check docs @ https://bit.ly/CRA-vitals
-// TODO: Maybe setup proper analytics later?? This works 4 now...
-reportWebVitals();
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+});
