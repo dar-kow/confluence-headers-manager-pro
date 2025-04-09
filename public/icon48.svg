@@ -1,0 +1,32 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tło -->
+  <rect width="48" height="48" rx="6" fill="#0052CC" />
+  
+  <!-- Główny dokument -->
+  <rect x="16" y="9" width="16" height="18" rx="2" fill="white" />
+  
+  <!-- Linie "tekstu" w głównym dokumencie -->
+  <rect x="18" y="12" width="12" height="2" rx="1" fill="#0052CC" />
+  <rect x="18" y="16" width="12" height="1.5" rx="0.75" fill="#DFE1E6" />
+  <rect x="18" y="19" width="9" height="1.5" rx="0.75" fill="#DFE1E6" />
+  <rect x="18" y="22" width="10" height="1.5" rx="0.75" fill="#DFE1E6" />
+  
+  <!-- Dokumenty peryferyjne -->
+  <g transform="translate(6, 27) rotate(-10)">
+    <rect x="0" y="0" width="12" height="15" rx="1.5" fill="#DEEBFF" />
+    <rect x="2" y="3" width="8" height="1.5" rx="0.75" fill="#0052CC" />
+    <rect x="2" y="6" width="8" height="1" rx="0.5" fill="#0052CC" opacity="0.7" />
+    <rect x="2" y="9" width="6" height="1" rx="0.5" fill="#0052CC" opacity="0.7" />
+  </g>
+  
+  <g transform="translate(30, 27) rotate(10)">
+    <rect x="0" y="0" width="12" height="15" rx="1.5" fill="#DEEBFF" />
+    <rect x="2" y="3" width="8" height="1.5" rx="0.75" fill="#0052CC" />
+    <rect x="2" y="6" width="8" height="1" rx="0.5" fill="#0052CC" opacity="0.7" />
+    <rect x="2" y="9" width="6" height="1" rx="0.5" fill="#0052CC" opacity="0.7" />
+  </g>
+  
+  <!-- Strzałki łączące -->
+  <path d="M 15 33 L 22 26" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" />
+  <path d="M 33 33 L 26 26" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" />
+</svg>
