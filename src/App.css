@@ -1,38 +1,308 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  .app {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  /* Header */
+  .header {
+    margin-bottom: 20px;
   }
-}
+  
+  .header h1 {
+    color: #0052CC;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 0;
+  }
+  
+  /* Container */
+  .container {
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 30px;
+  }
+  
+  .author-signature {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    color: #6B778C;
+    font-size: 0.9em;
+    font-style: italic;
+  }
+  
+  /* Form elements */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background: #0052CC;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background: #0747A6;
+  }
+  
+  button:disabled {
+    background: #97A0AF;
+    cursor: not-allowed;
+  }
+  
+  .input-info {
+    font-size: 0.85em;
+    color: #6B778C;
+    margin-top: -10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Format selector */
+  .format-selector {
+    margin-bottom: 20px;
+  }
+  
+  .format-selector-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .radio-group {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .radio-option {
+    margin-bottom: 8px;
+  }
+  
+  .radio-option label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+  }
+  
+  .radio-option input[type="radio"] {
+    margin-right: 8px;
+  }
+  
+  .option-description {
+    margin-left: 23px;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 2px;
+  }
+  
+  /* Checkbox container */
+  .checkbox-container {
+    margin-bottom: 15px;
+  }
+  
+  .checkbox-container label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+  }
+  
+  .checkbox-container input[type="checkbox"] {
+    margin-right: 8px;
+  }
+  
+  /* Child pages */
+  .child-pages {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+  }
+  
+  .child-page {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .child-page input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .empty-message {
+    color: #666;
+    font-style: italic;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Status message */
+  .status-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .status-message.success {
+    background: #E3FCEF;
+    color: #006644;
+    border: 1px solid #ABF5D1;
+  }
+  
+  .status-message.error {
+    background: #FFEBE6;
+    color: #DE350B;
+    border: 1px solid #FFBDAD;
+  }
+  
+  .status-message.warning {
+    background: #FFFAE6;
+    color: #FF8B00;
+    border: 1px solid #FFE380;
+  }
+  
+  .status-message.info {
+    background: #DEEBFF;
+    color: #0747A6;
+    border: 1px solid #B3D4FF;
+  }
+  
+  .status-dismiss-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+    opacity: 0.7;
+  }
+  
+  .status-dismiss-btn:hover {
+    opacity: 1;
+    background: none;
+  }
+  
+  /* Spinner */
+  .spinner-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #0052CC;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+  }
+  
+  .spinner-message {
+    margin-top: 10px;
+    color: #6B778C;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Confirmation dialog */
+  .confirmation-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .confirmation-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  
+  .confirmation-content h3 {
+    margin-top: 0;
+  }
+  
+  .confirmation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .confirmation-buttons button {
+    margin-left: 10px;
+  }
+  
+  .cancel-btn {
+    background-color: #DFE1E6;
+    color: #42526E;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #C1C7D0;
+  }
+  
+  .loading-message {
+    padding: 15px;
+    text-align: center;
+    color: #6B778C;
+  }
+  
+  /* Hide elements */
+  .hidden {
+    display: none !important;
+  }
+
+  
