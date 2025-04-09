@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { FormData } from './types';
 
-// Axios config
+// Axios setup 
 const client = axios.create({
-    baseURL: '/api', // will be full API server URL in prod
+    baseURL: '/api', // in prod will be full URL to API server
     headers: {
         'Content-Type': 'application/json'
     }
@@ -11,7 +11,7 @@ const client = axios.create({
 
 export const api = {
     /**
-     * Checks if parent page already has content
+     * Check if parent pg already has stuff in it
      */
     checkParentPage: async (parentPageUrl: string) => {
         const response = await client.post('/check-parent-page', { parentPageUrl });
@@ -19,7 +19,7 @@ export const api = {
     },
 
     /**
-     * Gets child pages for a given parent page
+     * Gets child pgs for given parent - simple API call
      */
     getChildPages: async (parentPageUrl: string) => {
         const response = await client.post('/child-pages', { parentPageUrl });
@@ -27,7 +27,7 @@ export const api = {
     },
 
     /**
-     * Parses child page URLs to IDs
+     * Turns URLs into IDs - saves time!
      */
     parseUrls: async (urls: string[]) => {
         const response = await client.post('/parse-urls', { urls });
@@ -35,7 +35,7 @@ export const api = {
     },
 
     /**
-     * Extracts headers from child pages and updates parent page
+     * Grabs hdrs from child pgs & updates parent
      */
     extractHeaders: async (formData: FormData) => {
         const response = await client.post('/extract-headers', formData);
