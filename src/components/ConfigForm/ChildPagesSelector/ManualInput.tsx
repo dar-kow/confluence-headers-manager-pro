@@ -21,8 +21,9 @@ const ManualInput: React.FC<ManualInputProps> = ({
                 rows={5}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                placeholder="np. https://twoja_nazwa.atlassian.net/wiki/spaces/~63f2e4683ec8aa51d3d10242/pages/327681/Logowanie"
+                placeholder="np. https://your?_name.atlassian.net/wiki/spaces/~63f2e4683ec8aa51d3d10242/pages/327681/Logowanie"
                 disabled={disabled}
+                className="full-width"
             />
         </div>
     );
