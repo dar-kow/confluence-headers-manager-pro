@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Confluence Headers Manager",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Narzędzie do zarządzania nagłówkami ze stron Confluence",
   "icons": {
     "16": "icons/icon16.png",
