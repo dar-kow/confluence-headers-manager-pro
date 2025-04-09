@@ -1,78 +1,117 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ParentPageInput from './ParentPageInput';
 import ChildPagesSelector from './ChildPagesSelector/ChildPagesSelector';
 import FormatSelector from './FormatSelector';
-import Spinner from '../Spinner';
+import StatusOptions from './StatusOptions';
+import UrlInfoPanel from './UrlInfoPanel';
 import { FormData } from '../../services/types';
 
 interface ConfigFormProps {
     onSubmit: (formData: FormData) => void;
     isLoading: boolean;
+    initialParentUrl?: string;
+    parsedUrl?: {
+        domain: string;
+        spaceKey: string;
+        pageId: string;
+        pageName: string;
+    } | null;
+    onFormDataChange?: (formData: FormData, isValid: boolean) => void;
 }
 
-const ConfigForm: React.FC<ConfigFormProps> = ({ onSubmit, isLoading }) => {
-    // Form state
-    const [parentPageUrl, setParentPageUrl] = useState('');
+const ConfigForm: React.FC<ConfigFormProps> = ({
+    onSubmit,
+    isLoading,
+    initialParentUrl = '',
+    parsedUrl,
+    onFormDataChange
+}) => {
+    // Stan formularza
+    const [parentPageUrl, setParentPageUrl] = useState(initialParentUrl);
     const [childPageIds, setChildPageIds] = useState<string[]>([]);
     const [headersAsHeadings, setHeadersAsHeadings] = useState(false);
+    const [showStatus, setShowStatus] = useState(false);
 
-    // Form submit handler
+    // Aktualizuj URL rodzica, gdy zmieni się initialParentUrl
+    useEffect(() => {
+        if (initialParentUrl) {
+            setParentPageUrl(initialParentUrl);
+        }
+    }, [initialParentUrl]);
+
+    // Sprawdź, czy formularz jest wypełniony poprawnie
+    const isFormValid = (): boolean => {
+        const valid = Boolean(parentPageUrl && childPageIds.length > 0);
+        console.log('ConfigForm validation:', {
+            parentPageUrl,
+            childPageIdsLength: childPageIds.length,
+            valid
+        });
+        return valid;
+    };
+
+    // Powiadom rodzica o zmianach w formularzu
+    useEffect(() => {
+        if (onFormDataChange) {
+            const formData = {
+                parentPageUrl,
+                childPageIds,
+                headersAsHeadings,
+                showStatus
+            };
+            const valid = isFormValid();
+            onFormDataChange(formData, valid);
+            console.log('Form data changed:', { formData, valid, childPageIds });
+        }
+    }, [parentPageUrl, childPageIds, headersAsHeadings, showStatus, onFormDataChange]);
+
+    // Obsługa wysyłania formularza
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!parentPageUrl) {
-            alert('Podaj link do strony nadrzędnej');
-            return;
-        }
-
-        if (childPageIds.length === 0) {
-            alert('Wybierz co najmniej jedną stronę podrzędną');
+        if (!isFormValid()) {
             return;
         }
 
         onSubmit({
             parentPageUrl,
             childPageIds,
-            headersAsHeadings
+            headersAsHeadings,
+            showStatus
         });
     };
 
     return (
-        <div className="config-form">
-            <h2>Automatyzacja nagłówków w Confluence</h2>
-            <p>To narzędzie pozwala na automatyczne wyciąganie nagłówków ze stron Confluence i umieszczanie ich na stronie nadrzędnej jako linki.</p>
+        <form className="config-form" onSubmit={handleSubmit}>
+            <ParentPageInput
+                value={parentPageUrl}
+                onChange={setParentPageUrl}
+                disabled={isLoading}
+            />
 
-            <div className="info-box">
-                <p>Możesz po prostu wkleić pełny link URL do strony Confluence, zamiast wprowadzać ID!</p>
-            </div>
+            {parsedUrl && (
+                <UrlInfoPanel parsedUrl={parsedUrl} />
+            )}
 
-            <form onSubmit={handleSubmit}>
-                <ParentPageInput
-                    value={parentPageUrl}
-                    onChange={setParentPageUrl}
-                />
+            <ChildPagesSelector
+                parentPageUrl={parentPageUrl}
+                onChildPagesChange={setChildPageIds}
+            />
 
-                <ChildPagesSelector
-                    parentPageUrl={parentPageUrl}
-                    onChildPagesChange={setChildPageIds}
-                />
+            <FormatSelector
+                value={headersAsHeadings}
+                onChange={setHeadersAsHeadings}
+                disabled={isLoading}
+            />
 
-                <FormatSelector
-                    value={headersAsHeadings}
-                    onChange={setHeadersAsHeadings}
-                />
+            <StatusOptions
+                showStatus={showStatus}
+                onShowStatusChange={setShowStatus}
+                disabled={isLoading}
+            />
 
-                <button
-                    type="submit"
-                    className="submit-button"
-                    disabled={isLoading}
-                >
-                    Uruchom automatyzację
-                </button>
-
-                {isLoading && <Spinner />}
-            </form>
-        </div>
+            {/* Przycisk został usunięty stąd i przeniesiony do nagłówka */}
+        </form>
     );
 };
 
