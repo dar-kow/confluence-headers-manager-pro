@@ -20,14 +20,14 @@ const StatusMessage: React.FC<StatusMessageProps> = ({
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        // If auto-dismiss enabled, start timer
+        // If auto-dismiss is on, start timer thing
         if (autoDismiss && onDismiss) {
             timerRef.current = setTimeout(() => {
                 onDismiss();
             }, autoDismissTimeout);
         }
 
-        // Cleanup timer on unmount
+        // Cleanup timer when component goes bye bye
         return () => {
             if (timerRef.current) {
                 clearTimeout(timerRef.current);
