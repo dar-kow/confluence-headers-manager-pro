@@ -1,0 +1,15 @@
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <!-- Uproszczona wersja dla małej ikony -->
+  <rect width="16" height="16" rx="2" fill="#0052CC" />
+  
+  <!-- Główny dokument - uproszczony -->
+  <rect x="5.5" y="3" width="5" height="6" rx="1" fill="white" />
+  
+  <!-- Dwa małe dokumenty -->
+  <rect x="2" y="9" width="4" height="4" rx="1" fill="#DEEBFF" />
+  <rect x="10" y="9" width="4" height="4" rx="1" fill="#DEEBFF" />
+  
+  <!-- Proste strzałki -->
+  <path d="M 4 10 L 6 8" stroke="white" stroke-width="0.5" />
+  <path d="M 12 10 L 10 8" stroke="white" stroke-width="0.5" />
+</svg>
