@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { api } from '../services/api';
-import { FormData, ApiResponse } from '../services/types';
+import { chromeApi } from '../services/chrome-api';
+import { FormData } from '../services/types';
 
 export const useConfluenceApi = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     /**
-     * Checks if parent page already has content
+     * Checks if parent pg has content already
+     * might be empty, might not be ¯\_(ツ)_/¯
      */
     const checkParentPageContent = async (parentPageUrl: string): Promise<boolean> => {
         if (!parentPageUrl) {
@@ -15,10 +16,10 @@ export const useConfluenceApi = () => {
 
         try {
             setIsLoading(true);
-            const response = await api.checkParentPage(parentPageUrl);
+            const response = await chromeApi.checkParentPage(parentPageUrl);
             return response.hasContent;
         } catch (error) {
-            console.error('Error while checking parent page:', error);
+            console.error('Error checking parent pg:', error);
             return false;
         } finally {
             setIsLoading(false);
@@ -26,7 +27,7 @@ export const useConfluenceApi = () => {
     };
 
     /**
-     * Gets child pages for given parent page
+     * Fetches child pgs for parent - gets the kiddos
      */
     const getChildPages = async (parentPageUrl: string) => {
         if (!parentPageUrl) {
@@ -35,10 +36,10 @@ export const useConfluenceApi = () => {
 
         try {
             setIsLoading(true);
-            const response = await api.getChildPages(parentPageUrl);
-            return response.childPages;
+            const response = await chromeApi.getChildPages(parentPageUrl);
+            return response;
         } catch (error) {
-            console.error('Error while fetching child pages:', error);
+            console.error('Error fetching child pgs:', error);
             throw error;
         } finally {
             setIsLoading(false);
@@ -46,7 +47,7 @@ export const useConfluenceApi = () => {
     };
 
     /**
-     * Parses child page URLs to IDs
+     * Turns URLs into IDs - cuz we need IDs not URLs duh
      */
     const parseUrls = async (urls: string[]): Promise<string[]> => {
         if (!urls || urls.length === 0) {
@@ -55,10 +56,10 @@ export const useConfluenceApi = () => {
 
         try {
             setIsLoading(true);
-            const response = await api.parseUrls(urls);
-            return response.pageIds;
+            const response = await chromeApi.parseUrls(urls);
+            return response;
         } catch (error) {
-            console.error('Error while parsing URLs:', error);
+            console.error('Error parsing URLs:', error);
             throw error;
         } finally {
             setIsLoading(false);
@@ -66,15 +67,16 @@ export const useConfluenceApi = () => {
     };
 
     /**
-     * Extracts headers from child pages & updates parent page
+     * Gets hdrs from child pgs & updates parent
+     * the good stuff happens here!
      */
-    const extractHeaders = async (formData: FormData): Promise<ApiResponse> => {
+    const extractHeaders = async (formData: FormData) => {
         try {
             setIsLoading(true);
-            const response = await api.extractHeaders(formData);
+            const response = await chromeApi.extractHeaders(formData);
             return response;
         } catch (error) {
-            console.error('Error during header extraction:', error);
+            console.error('Error extracting hdrs:', error);
             throw error;
         } finally {
             setIsLoading(false);
