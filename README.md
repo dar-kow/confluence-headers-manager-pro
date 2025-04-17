@@ -4,7 +4,9 @@
   # Confluence Headers Manager
 </div>
 
-**[English](#english) | [Polski](#polski)**
+**[English](#english) | [Polski](#polski)** 
+
+**[Chrome Web Store](https://chromewebstore.google.com/detail/confluence-headers-manage/egommklldjboiheffbiafffmkekclmpe?authuser=0&hl=pl)**
 
 <a id="english"></a>
 
