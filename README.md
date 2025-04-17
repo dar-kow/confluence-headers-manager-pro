@@ -235,6 +235,8 @@ Have questions or issues? Contact us through the Issues tab in the GitHub reposi
 
 # Polska Wersja
 
+**[Chrome Web Store](https://chromewebstore.google.com/detail/confluence-headers-manage/egommklldjboiheffbiafffmkekclmpe?authuser=0&hl=pl)**
+
 ## 📋 O Projekcie
 
 **Confluence Headers Manager** to inteligentne narzędzie rozwiązujące jeden z najbardziej uciążliwych problemów użytkowników Confluence - zarządzanie i śledzenie nagłówków w rozbudowanych przestrzeniach dokumentów. Twórz dynamiczne spisy treści z linkami do sekcji, automatycznie zbieraj nagłówki z podstron i łatwo nawiguj po złożonej dokumentacji.
